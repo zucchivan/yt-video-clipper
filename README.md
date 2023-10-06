@@ -4,7 +4,7 @@ This project allows you to download a YouTube video and clip it into multiple se
 
 ## Pre-requisites
 
-- Go (1.16 or higher)
+- Go (1.21 or higher)
 - FFmpeg
 
 ## Usage
