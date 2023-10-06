@@ -24,7 +24,7 @@ This project allows you to download a YouTube video and clip it into multiple se
 3. Run the program with the `-url` and `-timePairs` flags:
 
     ```bash
-    go run main.go -url="https://www.youtube.com/watch?v=example" -timePairs="00:00:10-00:00:20,00:01:00-00:01:10"
+    go run cmd/main.go -url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" -timePairs="00:00:10-00:00:20,00:01:00-00:01:10"
     ``````
 
     The time pairs should be in the `HH:mm:SS` format separated by a `-`.
