@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/kkdai/youtube/v2"
 )
@@ -45,8 +46,22 @@ func downloadVideo(url string, fileName string, errCh chan error) {
 }
 
 func clipVideo(inputFile string, outputFile string, start string, end string, errCh chan error) {
-	cmd := exec.Command("ffmpeg", "-ss", start, "-i", inputFile, "-to", end, "-c", "copy", outputFile)
-	err := cmd.Run()
+	startTime, err := time.Parse("15:04:05", start)
+	if err != nil {
+		errCh <- err
+		return
+	}
+
+	endTime, err := time.Parse("15:04:05", end)
+	if err != nil {
+		errCh <- err
+		return
+	}
+
+	duration := endTime.Sub(startTime).String()
+
+	cmd := exec.Command("ffmpeg", "-ss", start, "-i", inputFile, "-t", duration, "-acodec", "copy", "-vcodec", "copy", outputFile)
+	err = cmd.Run()
 	errCh <- err
 }
 
